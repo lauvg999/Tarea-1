@@ -1,0 +1,162 @@
+$mobile-bar-height: 45px;
+$border-radius: 10px;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#realHeader,
+#fakeHeader {
+  position: relative;
+  height: 80px;
+  width: 100vw;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+#realHeader {
+  z-index: 1987;
+  border-bottom: 1px solid #e6001a;
+  justify-content: right;
+  input {
+    width: 75%;
+    height: 40%;
+    background-color: #DCDCDC;
+    border-radius: $border-radius;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    font-size: 22px;
+
+    &:hover{
+      color: #e6001a;
+    }
+  }
+}
+
+
+#fakeHeader {
+  background-color: #e6001a;
+  justify-content: center;
+  height: 75px;
+  position: fixed;
+  top: -75px;
+  opacity: 0;
+  transition: all 1s ease;
+  z-index: 1986;
+  .btn {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+  }
+  path {
+    fill: #FFFFFF;
+  }
+}
+
+#searchBar,
+#footerMobile {
+  display: none;
+  transition: all 1s ease;
+}
+
+#searchBar {
+  position: fixed;
+  height: $mobile-bar-height;
+  width: 100%;
+  background-color: white;
+  top: 0px;
+  padding: 6px 15px;
+  &.hide {
+    top: -$mobile-bar-height;
+  }
+  input {
+    width: 100%;
+    background-color: #DCDCDC;
+    border-radius: $border-radius;
+  }
+}
+
+#footerMobile {
+  position: fixed;
+  bottom: 0px;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top: 1px solid rgba(40, 40, 40, 0.4);
+  justify-content: space-between;
+  padding: 0 15px;
+  &.hide {
+    bottom: -$mobile-bar-height;
+  }
+  .btn {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+    svg {
+      width: 24px;
+      height: 24px;
+      path {
+        fill: #5f5f5f;
+      }
+      &.pinterest {
+        path {
+          fill: #e6001a;
+        }
+      }
+    }
+  }
+}
+
+#content {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 5px;
+}
+
+.column {
+  padding: 5px;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  .element {
+    width: 100%;
+    border-radius: $border-radius;
+    margin: 5px 0;
+    img {
+      width: 100%;
+      border-radius: $border-radius;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  #content {
+    flex-flow: row wrap;
+  }
+
+  .column {
+    //flex: 50%;
+    display: grid;
+    grid-template-columns: repeat(2, 160px);
+  }
+
+  #searchBar,
+  #footerMobile {
+    display: flex;
+    height: $mobile-bar-height;
+  }
+
+  #realHeader,
+  #fakeHeader {
+    display: none;
+  }
+}
